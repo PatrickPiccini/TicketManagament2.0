@@ -20,7 +20,7 @@
                     <h2 class='title2'>Preencha seus dados</h2>
                 </div>
                 <main class='form-wrapper'>
-                    <form class='formularioMain' id='formularioMain' action="ServletRegister">
+                    <form class='formularioMain' id='formularioMain' >
                         <div id="div1" class='formdiv1'>
                             <div class='inputvalue'>
                                 <label for="name">Nome </label>
@@ -56,7 +56,7 @@
                     </form>
                 </main>
                 <footer>
-                    <button class='btn' form="formularioMain">
+                    <button class='btn' onclick="sendToCadastro()">
                         Cadastrar
                     </button>
                 </footer>
@@ -71,5 +71,5 @@
         </button>
     </div>
 </body>
-
+<script src='./Controller/LoginController.js'></script>
 </html>
