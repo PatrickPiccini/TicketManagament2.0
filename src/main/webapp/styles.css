@@ -1,0 +1,176 @@
+html,body{
+    width: 100%;
+    height: 100%;
+
+}
+
+body{
+    background: url(Background/19994914.jpg) no-repeat center fixed;
+    background-size: cover;
+    margin: 0%;
+}
+.fullpage{
+    width: 100%;
+    height: 100%;
+    overflow-y: hidden ;
+}
+
+.title {
+    margin: 0;
+    text-align: center;
+    text-transform: uppercase;
+    font-family: 'Nunito', sans-serif;
+    font-size: 24px;
+    color: #ccefff;
+}
+.blocksolid{
+    padding: 10px;
+    height: 400px;
+    min-width: 380px;
+    max-width: 450px;
+    margin-top: 10% ;
+    margin-left: 50px;
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: #0190d2ad;
+    border-radius: 6px;
+    float: left;
+    box-shadow: 3px 3px 8px 3px #00000088;
+}
+.stylebox{
+    background-color: white;
+}
+
+.form-wrapper{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 80%;
+}
+
+.form-wrapper a{
+    align-self: flex-end;
+    text-decoration: none;
+}
+
+.formulario{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    
+}
+
+.formulario input{
+    font-size: 14px;
+    width: 100%;
+    text-align: center;
+    background-color: #ffffff;
+    padding: 8px 0 8px 8px;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    
+}
+
+.formulario label{
+    align-self: flex-start;
+    color: white;
+    font-weight:  bold;
+    font: normal 11pt Arial;
+
+}
+.formulario .inputgroup{
+    gap: 5px;
+    width: 100%
+}
+
+
+.invalido {
+    background-color:  #004362; 
+    text-align:  center;
+    font: bold 11pt Arial;
+    border: 20px;
+    padding: 8px ;
+    border-radius: 8px;
+    color: rgb(255, 255, 255);
+    width: 95%;
+    margin-top: 20px;
+    display: none !important;
+}
+
+.btn{
+    background-color:  #004362;
+    text-align:  center;
+    font: normal 11pt Arial;
+    border-radius: 50px;
+    padding: 15px ;
+    border: none;
+    color: white;
+
+}
+
+footer{
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+    align-items: center;
+    font: normal 11pt Arial;
+}
+.checkboxgroup{
+    display: flex;
+    flex-flow: row-reverse;
+    gap: 5px;
+    align-items: center;
+    color: white;
+
+}
+.registry{
+    position: absolute ;
+    top: 2%  ;
+    right: 2%  ;
+    animation-name: go-down;
+    animation-duration: 1s;
+}
+
+@keyframes go-down {
+    from {
+        transform: translateY(-1000px);
+    } to {
+        transform: translateY(0);
+    }
+} 
+
+
+.registry label{
+    color: rgb(0, 0, 0);
+    font: normal 12pt Arial;
+    margin-right: 10px;
+
+}
+.btn.crieconta a{
+    text-decoration: none;
+    color: white;
+    font-weight:  bold;
+}
+
+.fullpage{
+    animation-name: go-back;
+    animation-duration: 1s;
+    
+}
+
+@keyframes go-back {
+    from {
+      transform: translateX(-1000px);
+    } to {
+      transform: translateX(0);
+    }
+  } 

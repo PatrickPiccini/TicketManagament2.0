@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Ticket Management</title>
+</head>
+
+<body>
+    <section class='fullpage'>
+        <div class="blocksolid">
+            <header>
+                <h2 class='title'>Ticket Management</h2>
+            </header>
+            <main class='form-wrapper'>
+                <form id='form1' class='formulario' method= "POST">
+                    <div class='inputgroup'>
+                        <label for="name">Nome</label>
+                        <input id="name" name='username'type="text" placeholder="Nome de utilizador">
+                    </div>
+                    <div class='inputgroup'>
+                        <label for="pass">Senha</label>
+                        <input id="pass" name='password' type="password" placeholder="Palavra chave">
+                    </div>
+                    
+                </form>
+                <a href="#" class="esqueceuSenha" style="color:#ffffff"> Esqueceu sua Senha?</a>
+                <div class="invalido">
+                    NOME E/OU SENHA INVÁLIDOS! <br>
+                </div>
+            </main>
+
+            
+            
+            <footer>
+                <button class="btn" onclick="">
+                    Iniciar sessão
+                </button>
+                <div class='checkboxgroup'>
+                    <label for="rmbm">Lembrar Usuario</label>
+                    <input type="checkbox" name="" id="rmbm" >
+                </div>
+            </footer>
+
+
+        </div>
+    </section>
+    
+    <div class='registry'>
+        <label for="btn crieconta" > Não tem uma conta ainda?</label>
+        <button class='btn crieconta'><a href="cadastro.html">Crie uma conta!</a>
+        </button>
+    </div>
+
+</body>
+<script src='./pedro.js'></script>
+<script src='./Controller/LoginController.js'></script>
+</html>
+
+
