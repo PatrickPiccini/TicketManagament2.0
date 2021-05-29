@@ -17,10 +17,10 @@ function sendToLogin() {
     //     if(error) throw(error)
     //     return response
     // })}
-    BancoResult = true
+    BancoResult = false
 
-    BancoResult == true ? window.location.href = "file:///C:/Users/patrick.piccini/Desktop/TicketManagament2.0/src/main/webapp/home.html"
-        : window.location.href = "file:///C:/Users/patrick.piccini/Desktop/TicketManagament2.0/src/main/webapp/fail.html"
+    BancoResult == true ? window.location.href = "file:///D:/Usu%C3%A1rios/Documentos/@Codigos/WorkSpace-POOA/TicketManagament2.0/src/main/webapp/home.html"
+        : window.location.href = "file:///D:/Usu%C3%A1rios/Documentos/@Codigos/WorkSpace-POOA/TicketManagament2.0/src/main/webapp/fail.html"
 }
 
 function sendToCadastro() {
@@ -60,6 +60,6 @@ function sendToCadastro() {
 
     BancoResultRegister = true
 
-    BancoResultRegister == true ? window.location.href = "file:///C:/Users/patrick.piccini/Desktop/TicketManagament2.0/src/main/webapp/home.html"
+    BancoResultRegister == true ? window.location.href = "file:///D:/Usu%C3%A1rios/Documentos/@Codigos/WorkSpace-POOA/TicketManagament2.0/src/main/webapp/home.html"
     : alert("Erro no Cadastro, Tente Novamente")
 }
