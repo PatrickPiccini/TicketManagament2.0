@@ -4,15 +4,21 @@
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
   </welcome-file-list>
-  
+ 
   <servlet>
   	<servlet-name>jersey.servlet</servlet-name>
-  	<servlet-class>org.glassfish.servlet.ServletContainer</servlet-class>
+  	<servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
   	<init-param>
   		<param-name>jersey.config.server.provider.packages</param-name>
   		<param-value>br.com.tkmanager.api</param-value>
   	</init-param>
-  	<load-on-startup>1</load-on-startup>
+  	
+  	<init-param>
+            <param-name>com.sun.jersey.api.container.ContainerResponseFilters</param-name>
+            <param-value>br.com.tkmanager.CorsFilter</param-value>
+    </init-param>
+  	
+	<load-on-startup>1</load-on-startup>
   </servlet>
   
   <servlet-mapping>
