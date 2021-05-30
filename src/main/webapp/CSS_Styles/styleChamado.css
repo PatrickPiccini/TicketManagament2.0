@@ -1,0 +1,131 @@
+.chamado{
+    height: 600px;
+    display: flex;
+}
+
+.titleIssue{
+    margin: 0 0 20px 50px;
+    color: black;
+    font: bold 14pt Arial;
+    font-style: italic;
+    width: 600px;
+}
+.descInfo{
+    padding: 10px;
+    min-height: 150px;
+    max-height: 275px;
+    min-width: 600px;
+    max-width: 600px;
+    border-color: rgba(110, 110, 110, 0.651);
+    box-shadow: 1px 1px 5px 1px #0000003a;
+    border-radius: 6px;
+    font: normal 12pt Arial;
+    line-height: 1.5;
+}
+.selectBox{
+    margin: 10px 0 25px 50px;
+    font-weight: bold;
+    width: 300px;
+    box-shadow: 1px 1px 5px 1px #0000003a;
+    padding: 5px;
+    border-radius: 6px;
+    border-style: none;
+}
+.PriorityBox{
+    font-weight: bold;
+    margin: 10px 0 20px ;
+    width: 300px;
+    box-shadow: 1px 1px 5px 1px #0000003a;
+    padding: 5px;
+    border-radius: 6px;
+    border-style: none;
+    float: right;
+
+}
+.resposavelDiv{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.descInfoPrioridade{
+    margin: 10px 95px 25px 50px;
+    min-height: 200px;
+    border-color: rgba(110, 110, 110, 0.651);
+    box-shadow: 1px 1px 5px 1px #0000003a;
+    padding: 5px;
+    border-radius: 6px;
+}
+.div1{
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: 400px;
+}
+.div2{
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 50px;
+}
+
+
+.divleft{
+    float: left;
+}
+.divright{
+    float: right;
+    height: 50px;
+    margin: 0 100px 0 0;
+}
+.lateralRight{
+    margin: 0px 0 0px 0px;
+    font-weight: bold;
+    height: 50px;   
+}
+.dateBox{
+    font-weight: bold;
+    margin: 10px 0 20px ;
+    width: -webkit-fill-available;
+    box-shadow: 1px 1px 5px 1px #0000003a;
+    padding: 5px;
+    border-radius: 6px;
+    border-style: none;
+    float: right;
+}
+textarea {
+    font-size: .8rem;
+    letter-spacing: 1px;
+}
+textarea {
+    padding: 10px;
+    line-height: 1.5;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-shadow: 1px 1px 1px #999;
+    font: normal 12pt Arial;
+}
+.footerbtn{
+    margin: 20px 0 20px 50px;
+}
+.btncreate{
+    background-color:  #004362;
+    text-align:  center;
+    font: normal 11pt Arial;
+    border-radius: 50px;
+    padding: 15px ;
+    border: none;
+    color: white;
+    flex-direction: column;
+}
+.btncancel{
+    background-color: white;
+    text-align:  center;
+    font: bold 11pt Arial;
+    border-radius: 50px;
+    border-style: solid;
+    padding: 15px ;
+    border-color: #004362;
+    color: #004362;
+    flex-direction: column;
+
+}
