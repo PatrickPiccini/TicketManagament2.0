@@ -1,39 +1,45 @@
 // const request = require("request");
 // var SEND_BANCO = process.env.SEND_BANCO || "http://localhost:8080/"
 
-var relatores = [
-    "patrick",
-    "Ederson",
-    "bido bosta",
-    "Pitt Mestre",
-    "Roberto Marinho"
-]
+// var relatores = [
+//     "patrick",
+//     "Ederson",
+//     "bido bosta",
+//     "Pitt Mestre",
+//     "Roberto Marinho"
+// ]
 
-relatores.forEach( (item) =>{
-    $('#reporter').append('<option>'+item+'</option>');
-})
+// relatores.forEach( (item) =>{
+//     $('#reporter').append('<option>'+item+'</option>');
+// })
 
-relatores.forEach( (item) =>{
-    $('#responsible').append('<option>'+item+'</option>');
-})
+// relatores.forEach( (item) =>{
+//     $('#responsible').append('<option>'+item+'</option>');
+// })
 
 
-function sendToLogin() {
+async function sendToLogin() {
     var user = document.querySelector('#name').value
     var password = document.querySelector('#pass').value
 
-    var credentials = {
-        Usuario: user,
-        Senha: password
+    
+    await fetch(`http://157bd108bb5f.ngrok.io/TicketManagament2.0/rest/loginValidation/${user}-${password}`,{
+        method: 'GET',
+        mode: 'cors',
+        headers:{
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        "sec-fetch-dest": "empty",
+        "sec-fetch-mode": "cors",
+        "sec-fetch-site": "cross-site"
     }
-    console.log(credentials);
-
-    // var BancoResult = () => {
-    //     request(`${SEND_BANCO}/`, credentials, (error,response) => {
-    //     if(error) throw(error)
-    //     return response
-    // })}
-    BancoResult = true
+    })
+    .then((response) => {
+        console.log(response.text());
+    })
+    .catch((erro) =>{
+        return console.log(erro);
+    })
 
     BancoResult == true ? window.location.href = "./home.html"
         : window.location.href = "./fail.html"
