@@ -60,11 +60,10 @@
 	</dependency>
 	
 	<dependency>
-		<groupId>org.json</groupId>
-		<artifactId>json</artifactId>
-		<version>20178516</version>
+	    <groupId>org.json</groupId>
+	    <artifactId>json</artifactId>
+	    <version>20210307</version>
 	</dependency>
-	
 	
 	<dependency>
 	    <groupId>org.glassfish.jersey.core</groupId>

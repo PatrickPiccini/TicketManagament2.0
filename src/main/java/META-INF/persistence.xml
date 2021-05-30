@@ -4,6 +4,8 @@
 	<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 	
 	<!-- Entidades do banco -->
+	<class>br.com.tkmanager.models.Tecnico</class>
+	<class>br.com.tkmanager.models.Chamado</class>
 	
 	
 	<!-- Propriedades de conexão com o Banco -->
