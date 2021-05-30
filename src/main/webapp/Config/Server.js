@@ -1,9 +1,12 @@
 const express = require('express');
-const routes = require("./routes");
+const routes = require("./../Config/Routes");
 const app = express()
 const PORT = 8080
+const cors = require('cors') 
 
+app.use(cors())
 app.use(routes);
+
 
 
 app.get('/',(request, respose)=>{
@@ -11,7 +14,7 @@ app.get('/',(request, respose)=>{
 });
 
 app.post('/',(request, respose)=>{
-    respose.send('Conexão estabelecida Post!')
+    return respose.json(request.body)
 });
 
 app.listen(PORT,() => {
