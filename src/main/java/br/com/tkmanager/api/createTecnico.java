@@ -7,17 +7,13 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import br.com.tkmanager.models.Tecnico;
-import br.com.tkmanager.api.loginValidation;
 import br.com.tkmanager.dbmanip.Database;
-
-import javax.persistence.*;
 
 import java.util.Date;
 
 @Path("/createTecnico")
 public class createTecnico {
-	private static final EntityManagerFactory ENTITY_MANAGER_FACTORY = Persistence.createEntityManagerFactory("TicketManagament2.0");
-	
+		
 	@POST
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	@Produces(MediaType.APPLICATION_JSON)
