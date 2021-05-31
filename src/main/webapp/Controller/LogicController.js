@@ -27,7 +27,6 @@ async function sendToLogin() {
     formData.append('username',user);
     formData.append('password',password);
     
-<<<<<<< HEAD
     // const data = new URLSearchParams();
     // for(const pair of new formData(formElement)){
     //     data.append(pa)
@@ -37,18 +36,6 @@ async function sendToLogin() {
         method: 'post',
         headers:{'Content-Type':' application/x-www-form-urlencoded'},        
         body:`username=${user}&password=${password}`
-=======
-    await fetch(`http://157bd108bb5f.ngrok.io:8080/TicketManagament2.0/rest/loginValidation/${user}-${password}`,{
-        method: 'GET',
-        mode: 'cors',
-        headers:{
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-        "sec-fetch-dest": "empty",
-        "sec-fetch-mode": "cors",
-        "sec-fetch-site": "cross-site"
-    }
->>>>>>> 5036a0f54ee3fe12fd2b1e926a26d94f87d71858
     })
 
     .then((response) => {
