@@ -23,7 +23,7 @@ async function sendToLogin() {
     var password = document.querySelector('#pass').value
 
     
-    await fetch(`http://157bd108bb5f.ngrok.io/TicketManagament2.0/rest/loginValidation/${user}-${password}`,{
+    await fetch(`http://157bd108bb5f.ngrok.io:8080/TicketManagament2.0/rest/loginValidation/${user}-${password}`,{
         method: 'GET',
         mode: 'cors',
         headers:{

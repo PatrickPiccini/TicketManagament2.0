@@ -15,7 +15,7 @@ public class loginValidation {
 	@POST
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response loginValidation(@FormParam("nome") String nome, @FormParam("senha") String senha) 
+	public Response loginValidation(@FormParam("username") String nome, @FormParam("password") String senha) 
 									throws JSONException{
 		JSONObject json = new JSONObject();
 		
