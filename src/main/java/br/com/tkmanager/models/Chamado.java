@@ -22,13 +22,13 @@ public class Chamado implements Serializable{
 	private Integer relator;
 	
 	@Column(name="titulo")
-	private Integer titulo;
+	private String titulo;
 	
 	@Column(name="status")
 	private Character status;
 	
 	@Column(name="descricao")
-	private Character descricao;
+	private String descricao;
 	
 	@Column(name="prioridade")
 	private Character prioridade;
@@ -56,11 +56,11 @@ public class Chamado implements Serializable{
 		this.relator = relator;
 	}
 
-	public Integer getTitulo() {
+	public String getTitulo() {
 		return titulo;
 	}
 
-	public void setTitulo(Integer titulo) {
+	public void setTitulo(String titulo) {
 		this.titulo = titulo;
 	}
 
@@ -72,11 +72,11 @@ public class Chamado implements Serializable{
 		this.status = status;
 	}
 
-	public Character getDescricao() {
+	public String getDescricao() {
 		return descricao;
 	}
 
-	public void setDescricao(Character descricao) {
+	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
 
