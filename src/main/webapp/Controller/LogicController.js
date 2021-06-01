@@ -1,21 +1,36 @@
-// const request = require("request");
-// var SEND_BANCO = process.env.SEND_BANCO || "http://localhost:8080/"
 
-// var relatores = [
-//     "patrick",
-//     "Ederson",
-//     "bido bosta",
-//     "Pitt Mestre",
-//     "Roberto Marinho"
-// ]
 
-// relatores.forEach( (item) =>{
-//     $('#reporter').append('<option>'+item+'</option>');
-// })
+async function loadTecnicos(){
 
-// relatores.forEach( (item) =>{
-//     $('#responsible').append('<option>'+item+'</option>');
-// })
+    await fetch(`https://38c0caa2bce8.ngrok.io/TicketManagament2.0/rest/getTecnicoNomes`,{
+        method: 'post',
+        headers:{'Content-Type':' application/x-www-form-urlencoded'},        
+        body:`username=${user}&password=${password}`
+    })
+    
+    .then((response) => {
+		response.json().then((data)=>{
+			console.log(data)
+
+            var listTecnicos = data.split()
+            console.log(listTecnicos);
+
+            listTecnicos.forEach( (item) =>{
+                $('#reporter').append('<option>'+item+'</option>');
+            })
+            
+            listTecnicos.forEach( (item) =>{
+                $('#responsible').append('<option>'+item+'</option>');
+            })
+
+		})
+        
+    })
+    .catch((erro) =>{
+        return console.log(erro);
+    })
+
+}
 
 
 async function sendToLogin() {
@@ -32,29 +47,27 @@ async function sendToLogin() {
     //     data.append(pa)
     // }
     
-    await fetch(`http://localhost:8080/TicketManagament2.0/rest/loginValidation/`,{
+    await fetch(`https://38c0caa2bce8.ngrok.io/TicketManagament2.0/rest/loginValidation/`,{
         method: 'post',
         headers:{'Content-Type':' application/x-www-form-urlencoded'},        
         body:`username=${user}&password=${password}`
     })
-
+    
     .then((response) => {
 		response.json().then((data)=>{
 			console.log(data)
+
+            data.existresp == true ? window.location.href = "./home.html"
+            : window.location.href = "./fail.html"
 		})
         
     })
     .catch((erro) =>{
         return console.log(erro);
     })
-
-	//var resphtml = true
-	
-    //resphtml == true ? window.location.href = "./home.html"
-    //    : window.location.href = "./fail.html"
 }
 
-function sendToCadastro() {
+async function sendToCadastro() {
     var name = document.querySelector('#name').value
     var last_name = document.querySelector('#sobrenome').value
     var email = document.querySelector('#email').value
@@ -65,7 +78,6 @@ function sendToCadastro() {
     var stap = true
     while (stap == true)
         if (email == email_verify && password == password_verify) {
-            alert('deu certo!!!!!!!!!')
             stap = false
         } else {
             alert('SENHA OU EMAIL INVÁLIDO')
@@ -83,29 +95,29 @@ function sendToCadastro() {
         password_verify
     }
 
-    fetch('http://localhost:8080/',{
-        method: 'POST',
-        headers:{
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(informations),
+    await fetch(`https://38c0caa2bce8.ngrok.io/TicketManagament2.0/rest/createTecnico/`,{
+        method: 'post',
+        headers:{'Content-Type':' application/x-www-form-urlencoded'},        
+        body:`name=${name}&sobrenome=${last_name}&email=${email}&senha=${password}&nascimento=sysdate`
     })
+
     .then((response) => {
-        return response.blob();
+		response.json().then((data)=>{
+			console.log(data.idTecnico)
+
+            window.location.href = "./home.html"
+    
+		})
+        
     })
     .catch((erro) =>{
         return console.log(erro);
     })
 
-    BancoResultRegister = true
-
-    BancoResultRegister == true ? window.location.href = "./home.html"
-    : alert("Erro no Cadastro, Tente Novamente")
 }
-function cancelIssue(event){
+async function cancelIssue(event){
     event.preventDefault()
-
+    var title = documen.querySelector('.titleIssue').value
     var responsible = document.querySelector('#responsible').value;
     var description = document.querySelector('#description').value;
     var status = document.querySelector('#status').value;
@@ -125,26 +137,21 @@ function cancelIssue(event){
 
     if(informationsComplete == true){
 
-        var informations = {
-            responsible,
-            description,
-            status,
-            reporter,
-            priority,
-            impact,
-            date
-        }
-    
-        fetch('http://localhost:8080/',{
-            method: 'POST',
-            headers:{
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(informations),
+        await fetch(`https://38c0caa2bce8.ngrok.io/TicketManagament2.0/rest/createChamado/`,{
+            method: 'post',
+            headers:{'Content-Type':' application/x-www-form-urlencoded'},        
+            body:`responsavel=${responsible}&relator=${reporter}&titulo=${title}&status=${status}&descricao=${description}&prioridade=${priority}&impacto=${impact}&dtinicio=${date}`
         })
+    
         .then((response) => {
-            return response.blob();
+            response.json().then((data)=>{
+                console.log(data)
+                
+                createSusseful != null && alert(`Chamado numeor ${data} Criado com Sucesso`)
+                window.location.href = "./home.html"
+        
+            })
+            
         })
         .catch((erro) =>{
             return console.log(erro);
