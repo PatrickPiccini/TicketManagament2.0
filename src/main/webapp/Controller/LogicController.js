@@ -32,7 +32,6 @@ async function loadTecnicos(){
 
 }
 
-
 async function sendToLogin() {
     var user = document.querySelector('#name').value
     var password = document.querySelector('#pass').value
