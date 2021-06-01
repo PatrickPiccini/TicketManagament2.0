@@ -39,7 +39,10 @@ async function sendToLogin() {
     })
 
     .then((response) => {
+        response.json();
+        console.log(response);
 		return response.blob();
+        
     })
     .catch((erro) =>{
         return console.log(erro);
