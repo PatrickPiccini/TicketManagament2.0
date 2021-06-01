@@ -5,7 +5,6 @@ async function loadTecnicos(){
     await fetch(`https://38c0caa2bce8.ngrok.io/TicketManagament2.0/rest/getTecnicoNomes`,{
         method: 'post',
         headers:{'Content-Type':' application/x-www-form-urlencoded'},        
-        body:`username=${user}&password=${password}`
     })
     
     .then((response) => {
@@ -56,8 +55,8 @@ async function sendToLogin() {
 		response.json().then((data)=>{
 			console.log(data)
 
-            data.existresp == true ? window.location.href = "./home.html"
-            : window.location.href = "./fail.html"
+            data.existresp == true ? window.location.href = "./HTML/home.html"
+            : window.location.href = "fail.html"
 		})
         
     })
@@ -104,7 +103,7 @@ async function sendToCadastro() {
 		response.json().then((data)=>{
 			console.log(data.idTecnico)
 
-            window.location.href = "./home.html"
+            window.location.href = "home.html"
     
 		})
         
@@ -147,7 +146,7 @@ async function cancelIssue(event){
                 console.log(data)
                 
                 createSusseful != null && alert(`Chamado numeor ${data} Criado com Sucesso`)
-                window.location.href = "./home.html"
+                window.location.href = "home.html"
         
             })
             
