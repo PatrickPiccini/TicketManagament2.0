@@ -27,10 +27,10 @@ public class createChamado {
 		Chamado cha = Database.insertChamado(responsavel, relator, titulo, status, descricao, prioridade, impacto, dtinicio);
 		
 		if (cha != null) {
-			json.put("idTecnico", cha.getIdchamado());
+			json.put("idChamado", cha.getIdchamado());
 			}
 			else {
-			json.put("idTecnico", "null");
+			json.put("idChamado", "null");
 			}
 		
 		return Response.status(200).entity(json.toString(2)).build();

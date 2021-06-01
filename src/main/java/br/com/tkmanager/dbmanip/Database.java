@@ -146,6 +146,39 @@ public class Database {
 		
 		return lc;
 	}
+	
+	public static List<String> selectTecnicoNomes(){
+		EntityManager em = ENTITY_MANAGER_FACTORY.createEntityManager();
+		EntityTransaction tr = em.getTransaction();
+		List<Tecnico> lt;
+		List<String> ln = new ArrayList<String>();
+		
+		try {
+			tr.begin();
+			
+			try {
+				lt = em.createQuery("SELECT tec FROM TECNICO tec", Tecnico.class).getResultList();
+				
+				for (Tecnico tec : lt) {
+					ln.add(tec.getNome()+ " " + tec.getSobrenome());
+				}
+			}
+			catch(NoResultException nr) {
+				ln = null;
+			}
+			
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
+		finally {
+			em.close();
+		}
+		
+		return ln;
+	}
+	
+	
 }
 
 
