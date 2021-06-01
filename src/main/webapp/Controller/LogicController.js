@@ -27,39 +27,27 @@ async function sendToLogin() {
     formData.append('username',user);
     formData.append('password',password);
     
-<<<<<<< HEAD
     // const data = new URLSearchParams();
     // for(const pair of new formData(formElement)){
     //     data.append(pa)
     // }
     
-    await fetch(`http://25.106.166.86:8080/TicketManagament2.0/rest/loginValidation/`,{
+    await fetch(`http://localhost:8080/TicketManagament2.0/rest/loginValidation/`,{
         method: 'post',
         headers:{'Content-Type':' application/x-www-form-urlencoded'},        
         body:`username=${user}&password=${password}`
-=======
-    await fetch(`http://157bd108bb5f.ngrok.io:8080/TicketManagament2.0/rest/loginValidation/${user}-${password}`,{
-        method: 'GET',
-        mode: 'cors',
-        headers:{
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-        "sec-fetch-dest": "empty",
-        "sec-fetch-mode": "cors",
-        "sec-fetch-site": "cross-site"
-    }
->>>>>>> 5036a0f54ee3fe12fd2b1e926a26d94f87d71858
     })
 
     .then((response) => {
-        console.log(response);
+		return response.blob();
     })
     .catch((erro) =>{
         return console.log(erro);
     })
 
-
-    response.body.existresp == true ? window.location.href = "./home.html"
+	var resphtml = true
+	
+    resphtml == true ? window.location.href = "./home.html"
         : window.location.href = "./fail.html"
 }
 
