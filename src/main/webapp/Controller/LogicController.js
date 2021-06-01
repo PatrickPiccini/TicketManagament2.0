@@ -39,19 +39,19 @@ async function sendToLogin() {
     })
 
     .then((response) => {
-        response.json();
-        console.log(response);
-		return response.blob();
+		response.json().then((data)=>{
+			console.log(data)
+		})
         
     })
     .catch((erro) =>{
         return console.log(erro);
     })
 
-	var resphtml = true
+	//var resphtml = true
 	
-    resphtml == true ? window.location.href = "./home.html"
-        : window.location.href = "./fail.html"
+    //resphtml == true ? window.location.href = "./home.html"
+    //    : window.location.href = "./fail.html"
 }
 
 function sendToCadastro() {
