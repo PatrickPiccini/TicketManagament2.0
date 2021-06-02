@@ -1,24 +1,25 @@
 
-
 async function loadTecnicos(){
 
-    await fetch(`http://25.106.166.86:8080/TicketManagament2.0/rest/getTecnicoNomes/`,{
+    await fetch(`http://25.106.166.86:8080/TicketManagament2.0/rest/getTecnico/`,{
         method: 'post',
         headers:{'Content-Type':' application/x-www-form-urlencoded'},        
     })
     
     .then((response) => {
 		response.json().then((data)=>{
-			console.log(data)
-
-            var listTecnicos = data.split()
-            console.log(listTecnicos);
-
-            listTecnicos.forEach( (item) =>{
+            console.log(data)
+        
+            for(var i=1;i = data.nomes.length();i+=2){
+                console.log(i);
+            }
+            
+            
+            data.nomes.forEach( (item) =>{
                 $('#reporter').append('<option>'+item+'</option>');
             })
             
-            listTecnicos.forEach( (item) =>{
+            data.nomes.forEach( (item) =>{
                 $('#responsible').append('<option>'+item+'</option>');
             })
 
@@ -113,9 +114,9 @@ async function sendToCadastro() {
     })
 
 }
-async function cancelIssue(event){
+async function createIssue(event){
     event.preventDefault()
-    var title = documen.querySelector('.titleIssue').value
+    var title = document.querySelector('.titleIssue').value
     var responsible = document.querySelector('#responsible').value;
     var description = document.querySelector('#description').value;
     var status = document.querySelector('#status').value;
@@ -124,36 +125,62 @@ async function cancelIssue(event){
     var impact = document.querySelector('#impact').value;
     var date = document.querySelector('#dateBox').value;
     var informationsComplete = false
-    
-    if(responsible == null || description == 'N/A' || status == 'N/A' || reporter == 'N/A' || priority == 'N/A' || impact == 'N/A' || date == '' ){
-        alert("Ncessario preencimento de todos os campos")
-        informationsComplete = false
-    } else {
-        informationsComplete = true
-    }
 
+    var idresp = responsible.split()
+    console.log(idresp[0][0])
+
+    var idrel = reporter.split()
+    console.log(idrel[0][0]);
+
+
+    // if(responsible == null || description == 'N/A' || status == 'N/A' || reporter == 'N/A' || priority == 'N/A' || impact == 'N/A' || date == '' ){
+    //     alert("Ncessario preencimento de todos os campos")
+    //     informationsComplete = false
+    // } else {
+    //     informationsComplete = true
+    // }
+
+    
+    
+
+    // console.log(title,responsible,description,status,reporter,priority,impact,date);
 
     if(informationsComplete == true){
 
         await fetch(`http://25.106.166.86:8080/TicketManagament2.0/rest/createChamado/`,{
             method: 'post',
             headers:{'Content-Type':' application/x-www-form-urlencoded'},        
-            body:`responsavel=${responsible}&relator=${reporter}&titulo=${title}&status=${status}&descricao=${description}&prioridade=${priority}&impacto=${impact}&dtinicio=${date}`
+            // body:`responsavel=${responsible}
+            // &relator=${reporter}
+            // &titulo=${title}
+            // &status=${status}
+            // &descricao=${description}
+            // &prioridade=${priority}
+            // &impacto=${impact}
+            // &dtinicio=${date}`
+            body:`responsavel=
+            &relator=
+            &titulo=
+            &status=
+            &descricao=
+            &prioridade=$
+            &impacto=
+            &dtinicio=`
         })
     
-        .then((response) => {
-            response.json().then((data)=>{
-                console.log(data)
+        // .then((response) => {
+        //     response.json().then((data)=>{
+        //         console.log(data)
                 
-                createSusseful != null && alert(`Chamado numeor ${data} Criado com Sucesso`)
-                window.location.href = "./home.html"
+        //         createSusseful != null && alert(`Chamado numeor ${data} Criado com Sucesso`)
+        //         window.location.href = "./home.html"
         
-            })
+        //     })
             
-        })
-        .catch((erro) =>{
-            return console.log(erro);
-        })
+        // })
+        // .catch((erro) =>{
+        //     return console.log(erro);
+        // })
     }
 
 

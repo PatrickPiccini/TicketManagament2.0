@@ -22,6 +22,7 @@
     font: normal 12pt Arial;
     line-height: 1.5;
 }
+
 .selectBox{
     margin: 10px 0 25px 50px;
     font-weight: bold;
@@ -31,6 +32,7 @@
     border-radius: 6px;
     border-style: none;
 }
+
 .PriorityBox{
     font-weight: bold;
     margin: 10px 0 20px ;
