@@ -2,7 +2,7 @@
 
 async function loadTecnicos(){
 
-    await fetch(`https://38c0caa2bce8.ngrok.io/TicketManagament2.0/rest/getTecnicoNomes`,{
+    await fetch(`http://25.106.166.86:8080/TicketManagament2.0/rest/getTecnicoNomes/`,{
         method: 'post',
         headers:{'Content-Type':' application/x-www-form-urlencoded'},        
     })
@@ -45,7 +45,7 @@ async function sendToLogin() {
     //     data.append(pa)
     // }
     
-    await fetch(`https://38c0caa2bce8.ngrok.io/TicketManagament2.0/rest/loginValidation/`,{
+    await fetch(`http://25.106.166.86:8080/TicketManagament2.0/rest/loginValidation/`,{
         method: 'post',
         headers:{'Content-Type':' application/x-www-form-urlencoded'},        
         body:`username=${user}&password=${password}`
@@ -55,8 +55,8 @@ async function sendToLogin() {
 		response.json().then((data)=>{
 			console.log(data)
 
-            data.existresp == true ? window.location.href = "./HTML/home.html"
-            : window.location.href = "fail.html"
+            data.existresp == true ? window.location.href = "./home.html"
+            : window.location.href = "./fail.html"
 		})
         
     })
@@ -93,7 +93,7 @@ async function sendToCadastro() {
         password_verify
     }
 
-    await fetch(`https://38c0caa2bce8.ngrok.io/TicketManagament2.0/rest/createTecnico/`,{
+    await fetch(`http://25.106.166.86:8080/TicketManagament2.0/rest/createTecnico/`,{
         method: 'post',
         headers:{'Content-Type':' application/x-www-form-urlencoded'},        
         body:`name=${name}&sobrenome=${last_name}&email=${email}&senha=${password}&nascimento=sysdate`
@@ -103,7 +103,7 @@ async function sendToCadastro() {
 		response.json().then((data)=>{
 			console.log(data.idTecnico)
 
-            window.location.href = "home.html"
+            window.location.href = "./home.html"
     
 		})
         
@@ -135,7 +135,7 @@ async function cancelIssue(event){
 
     if(informationsComplete == true){
 
-        await fetch(`https://38c0caa2bce8.ngrok.io/TicketManagament2.0/rest/createChamado/`,{
+        await fetch(`http://25.106.166.86:8080/TicketManagament2.0/rest/createChamado/`,{
             method: 'post',
             headers:{'Content-Type':' application/x-www-form-urlencoded'},        
             body:`responsavel=${responsible}&relator=${reporter}&titulo=${title}&status=${status}&descricao=${description}&prioridade=${priority}&impacto=${impact}&dtinicio=${date}`
@@ -146,7 +146,7 @@ async function cancelIssue(event){
                 console.log(data)
                 
                 createSusseful != null && alert(`Chamado numeor ${data} Criado com Sucesso`)
-                window.location.href = "home.html"
+                window.location.href = "./home.html"
         
             })
             
