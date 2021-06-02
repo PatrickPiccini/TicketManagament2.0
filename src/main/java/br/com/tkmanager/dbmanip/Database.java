@@ -147,11 +147,11 @@ public class Database {
 		return lc;
 	}
 	
-	public static List<String> selectTecnicoNomes(){
+	public static List<List> selectTecnico(){
 		EntityManager em = ENTITY_MANAGER_FACTORY.createEntityManager();
 		EntityTransaction tr = em.getTransaction();
 		List<Tecnico> lt;
-		List<String> ln = new ArrayList<String>();
+		List<List> ln = new ArrayList<List>();
 		
 		try {
 			tr.begin();
@@ -160,7 +160,10 @@ public class Database {
 				lt = em.createQuery("SELECT tec FROM TECNICO tec", Tecnico.class).getResultList();
 				
 				for (Tecnico tec : lt) {
-					ln.add(tec.getNome()+ " " + tec.getSobrenome());
+					List<String> tec_aux = new ArrayList<String>();
+					tec_aux.add(tec.getId().toString());
+					tec_aux.add(tec.getNome()+ " " + tec.getSobrenome());
+					ln.add(tec_aux);
 				}
 			}
 			catch(NoResultException nr) {

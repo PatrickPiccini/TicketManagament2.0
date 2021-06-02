@@ -20,7 +20,7 @@ public class createChamado {
 	@POST
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response createChamado(@FormParam("responsavel") Integer responsavel, @FormParam("relator") Integer relator,@FormParam("titulo") String titulo,@FormParam("status") Character status,@FormParam("descricao") String descricao,@FormParam("prioridade") Character prioridade,@FormParam("impacto") Character impacto, @FormParam("dtinicio")Date dtinicio) throws JSONException{
+	public Response createChamado(@FormParam("responsavel") Integer responsavel, @FormParam("relator") Integer relator,@FormParam("titulo") String titulo,@FormParam("status") Character status,@FormParam("descricao") String descricao,@FormParam("prioridade") Character prioridade,@FormParam("impacto") Character impacto, @FormParam("dtinicio") Date dtinicio) throws JSONException{
 		
 		JSONObject json = new JSONObject();
 		

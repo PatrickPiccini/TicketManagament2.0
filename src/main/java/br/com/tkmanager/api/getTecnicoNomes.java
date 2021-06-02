@@ -11,19 +11,18 @@ import org.json.JSONObject;
 import br.com.tkmanager.models.Tecnico;
 import br.com.tkmanager.dbmanip.Database;
 
-@Path("/getTecnicoNomes")
+@Path("/getTecnico")
 public class getTecnicoNomes {
 	
 	@POST
-	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getTecnicoNomes() throws JSONException{
 		JSONObject json = new JSONObject();
 		
-		List<String> ltn = Database.selectTecnicoNomes();
+		List<List> ltn = Database.selectTecnico();
 		
 		if (ltn != null) {
-			json.put("nomes", ltn.toString());
+			json.put("nomes", ltn);
 		}
 		else {
 			json.put("nomes", "null");
