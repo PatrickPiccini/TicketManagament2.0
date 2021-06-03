@@ -24,10 +24,12 @@ public class createChamado {
 		
 		JSONObject json = new JSONObject();
 		
-		Chamado cha = Database.insertChamado(responsavel, relator, titulo, status, descricao, prioridade, impacto, dtinicio);
+		
+			Integer cha = 6;
+		//Chamado cha = Database.insertChamado(responsavel, relator, titulo, status, descricao, prioridade, impacto, dtinicio);
 		
 		if (cha != null) {
-			json.put("idChamado", cha.getIdchamado());
+			json.put("idChamado", cha);
 			}
 			else {
 			json.put("idChamado", "null");
