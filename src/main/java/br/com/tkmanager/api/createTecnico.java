@@ -9,7 +9,9 @@ import org.json.JSONObject;
 import br.com.tkmanager.models.Tecnico;
 import br.com.tkmanager.dbmanip.Database;
 
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 @Path("/createTecnico")
 public class createTecnico {
@@ -17,10 +19,12 @@ public class createTecnico {
 	@POST
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response createTecnico(@FormParam("nome") String nome, @FormParam("sobrenome") String sobrenome, @FormParam("senha") String senha, @FormParam("email") String email, @FormParam("nascimento") Date nascimento) throws JSONException{
+	public Response createTecnico(@FormParam("nome") String nome, @FormParam("sobrenome") String sobrenome, @FormParam("senha") String senha, @FormParam("email") String email) throws JSONException{
 		JSONObject json = new JSONObject();
 		
-		Tecnico tec = Database.insertTecnico(nome, sobrenome, senha, email, nascimento);
+		Date data = new Date(System.currentTimeMillis());
+
+		Tecnico tec = Database.insertTecnico(nome, sobrenome, senha, email, data);
 		
 		if (tec != null) {
 		json.put("idTecnico", tec.getId());

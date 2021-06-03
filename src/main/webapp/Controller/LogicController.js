@@ -54,8 +54,8 @@ async function sendToLogin() {
                 // console.log(data)
 
                 localStorage.setItem('idTec',data.idtec)
-                data.existresp == true ? window.location.href = "./home.html"
-                    : window.location.href = "./fail.html"
+                data.existresp == true ? window.location.href = "./HTML/home.html"
+                    : window.location.href = "./HTML/fail.html"
             })
 
         })
