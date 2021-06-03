@@ -73,6 +73,7 @@
 
 .divleft{
     float: left;
+    
 }
 .divright{
     float: right;
@@ -129,5 +130,4 @@ textarea {
     border-color: #004362;
     color: #004362;
     flex-direction: column;
-
 }

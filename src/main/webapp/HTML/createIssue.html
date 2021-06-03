@@ -5,18 +5,16 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="./../CSS_Styles/home.css">
     <link rel="stylesheet" href="./../CSS_Styles/styleChamado.css">
-
     <script src='./../Controller/LogicController.js'></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js" type="text/javascript"></script>
 
     <title>Criação de Chamado</title>
 </head>
 
-<!-- <body onload="loadTecnicos()"> -->
-
-<body>
+<body onload="loadTecnicos()">
+<!-- <body> -->
     <input type="checkbox" class='checkMenu' id="menu">
     <label for="menu" class='icone'>
         <div class='circle'></div>
@@ -29,9 +27,9 @@
         </label>
         <ul class='UlMenu'>
             <h2 class='title'>Ticket Management</h2>
-            <li class='intesMenu'><a href="./fail.html" class='blocksLinks'>HOME</a></li>
+            <li class='intesMenu'><a href="./home.html" class='blocksLinks'>HOME</a></li>
             <li class='intesMenu'><a href="./createIssue.html" class='blocksLinks'>CREATE TICKETS</a></li>
-            <li class='intesMenu'><a href="./home.html" class='blocksLinks'>MY TICKETS</a></li>
+            <li class='intesMenu'><a href="./myTickets.html" class='blocksLinks'>MY TICKETS</a></li>
             <li class='intesMenu'><a href="" class='blocksLinks'>SETINGS</a></li>
             <li class='intesMenu'><a href="" class='blocksLinks'>ALGUMACOISA</a></li>
 
@@ -47,16 +45,16 @@
         <form class='centralinfos'>
             <div class='chamado'>
                 <h3 class="titleID">ID chamado</h3>
-                <h3 class="titleIssue" contenteditable="">Titulo Editavel do Chamado</h3>
+                <h3 class="titleIssue"  id='tituloh3' value='' contenteditable="">Titulo Editavel do Chamado</h3>
                 <div class='div2'>
                     <div class='divleft'>
                         <label for="descInfo" class="titleDesc">Responsável</label><br>
                         <select class='selectBox' id='responsible' onchange="this.value">
                             <option value="#">Selecione</option>
-                            <option value="1,Patrick">1,Patrick</option>
+                            <!-- <option value="10,Patrick">10,Patrick</option>
                             <option value="2,Ed">2,Ed</option>
                             <option value="3,Pitti">3,Pitti</option>
-                            <option value="4,Bido">4,Bido</option>
+                            <option value="4,Bido">4,Bido</option> -->
                      
                         </select>
                     </div>
@@ -84,30 +82,29 @@
                         <label for="descInfo" class="lateralRight">Relator</label><br>
                         <select class='PriorityBox' id='reporter' onchange="this.value">
                             <option value="N/A">Relator</option>
-                            <option value="1,Patrick">1,Patrick</option>
+                            <!-- <option value="10,Patrick">10,Patrick</option>
                             <option value="2,Ed">2,Ed</option>
                             <option value="3,Pitti">3,Pitti</option>
-                            <option value="4,Bido">4,Bido</option>
+                            <option value="4,Bido">4,Bido</option> -->
 
                         </select><br>
                         <!-- enviar para o banco a prioridade do chamado -->
                         <label for="descInfo" class="lateralRight">Prioridade</label><br>
                         <select class='PriorityBox' id='priority' onchange="this.value">
                             <option value="N/A">Prioridade</option>
-                            <option value="Priodidade 1">Priodidade 1</option>
-                            <option value="Priodidade 2">Priodidade 2</option>
-                            <option value="Priodidade 3">Priodidade 3</option>
-                            <option value="Priodidade 4">Priodidade 4</option>
+                            <option value="Prioridade 1">Prioridade 1</option>
+                            <option value="Prioridade 2">Prioridade 2</option>
+                            <option value="Prioridade 3">Prioridade 3</option>
+                            <option value="Prioridade 4">Prioridade 4</option>
                         </select><br>
                         <!-- enviar para o banco o impacto do chamado -->
                         <label for="descInfo" class="lateralRight">Impacto</label><br>
                         <select class='PriorityBox' id='impact' onchange="this.value">
                             <option value="N/A">Impacto</option>
-                            <option value="Critido">Critido</option>
+                            <option value="Critico">Critico</option>
                             <option value="Alto">Alto</option>
                             <option value="Medio">Medio</option>
                             <option value="Baixo">Baixo</option>
-                            <option value="Muioto Baixo">Muioto Baixo</option>
                         </select><br>
                         <label for="descInfo" class="lateralRight">Data de Inicio</label><br>
                         <input class='dateBox' type="date" name="" id="dateBox">
