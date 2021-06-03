@@ -23,17 +23,14 @@ public class getChamados {
 		
 		List<Chamado> lc = Database.selectChamados(idResp);
 		
-		
-		json.put("chamados", lc.toString());
-		
-		/*
 		if (lc != null) {
-			for (Chamado cha : lc) {
-				
-			}
-		}*/
+			json.put("chamados", lc);
+		}
+		else {
+			json.put("chamados", "null");
+		}
 		
-		return Response.status(200).entity(json.toString()).build();
+		return Response.status(200).entity(json.toString(2)).build();
 		
 	}
 

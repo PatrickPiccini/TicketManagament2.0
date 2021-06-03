@@ -119,21 +119,22 @@ public class Database {
 		// idResp <= 0  irá retornar todos os chamados da tabela
 		EntityManager em = ENTITY_MANAGER_FACTORY.createEntityManager();
 		EntityTransaction tr = em.getTransaction();
-		List<Chamado> lc = null;
+		List<Chamado> chamados = new ArrayList<Chamado>();
 		
 		try {
 			tr.begin();
 			
 			try {
 				if (idResp > 0) { 
-					lc = em.createQuery("SELECT cha FROM CHAMADO cha WHERE cha.responsavel = "+ idResp, Chamado.class).getResultList();
+					chamados = em.createQuery("SELECT cha FROM CHAMADO cha WHERE cha.responsavel = "+ idResp, Chamado.class).getResultList();
 				}
 				else {
-					lc = em.createQuery("SELECT cha FROM CHAMADO cha", Chamado.class).getResultList();
+					chamados = em.createQuery("SELECT cha FROM CHAMADO cha", Chamado.class).getResultList();
+
 				}
 			}
 			catch(NoResultException nr) {
-				lc = null;
+				chamados = null;
 			}
 			
 		}
@@ -144,7 +145,7 @@ public class Database {
 			em.close();
 		}
 		
-		return lc;
+		return chamados;
 	}
 	
 	public static List<List> selectTecnico(){
