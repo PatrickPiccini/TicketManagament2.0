@@ -157,3 +157,24 @@ body{
 .descInfo{
     margin: 10px 0 20px 50px;
 }
+.formhome{
+    margin-bottom: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 50px 0 0 0 ;
+
+}
+.infosMainhome{
+
+    top: 80px;
+    width: 100%;
+    height:91%;
+    transition-duration: 0.5s;
+    position: relative;
+    overflow: auto;
+}
+.checkMenu:checked ~ .infosMainhome{
+    transform: translateX(350px);  
+    width: 81.7%;
+}
