@@ -7,6 +7,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import br.com.tkmanager.models.Tecnico;
+import br.com.tkmanager.util.Bcrypt;
 import br.com.tkmanager.dbmanip.Database;
 
 import java.util.Calendar;
@@ -21,10 +22,17 @@ public class createTecnico {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response createTecnico(@FormParam("nome") String nome, @FormParam("sobrenome") String sobrenome, @FormParam("senha") String senha, @FormParam("email") String email) throws JSONException{
 		JSONObject json = new JSONObject();
-		
+		Tecnico tec = new Tecnico();
 		Date data = new Date(System.currentTimeMillis());
-
-		Tecnico tec = Database.insertTecnico(nome, sobrenome, senha, email, data);
+		
+		
+		boolean existeTecnico = Database.haveTecnico(nome, sobrenome);
+		if (!existeTecnico) {
+			tec = Database.insertTecnico(nome, sobrenome, Bcrypt.hashPass(senha), email, data);
+		}
+		else {
+			tec = null;
+		}
 		
 		if (tec != null) {
 		json.put("idTecnico", tec.getId());

@@ -3,9 +3,6 @@
   <display-name>TicketManagament2.0</display-name>
   <welcome-file-list>
     <welcome-file>/HTML/index.html</welcome-file>
-    <welcome-file>/HTML/home.html</welcome-file>
-    <welcome-file>/HTML/fail.html</welcome-file>
-    <welcome-file>/HTML/createIssue.html</welcome-file>
   </welcome-file-list>
  
   <servlet>

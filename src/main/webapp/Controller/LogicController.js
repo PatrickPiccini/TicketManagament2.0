@@ -54,8 +54,8 @@ async function sendToLogin() {
                 // console.log(data)
 
                 localStorage.setItem('idTec',data.idtec)
-                data.existresp == true ? window.location.href = "./HTML/home.html"
-                    : window.location.href = "./HTML/fail.html"
+                data.existresp == true ? window.location.href = "/TicketManagament2.0/HTML/home.html"
+                    : window.location.href = "/TicketManagament2.0/HTML/fail.html"
             })
 
         })
@@ -94,7 +94,7 @@ async function sendToCadastro() {
                 console.log(data.idTecnico)
                 localStorage.removeItem('idTec')
                 localStorage.setItem('idTec',data.idTecnico)
-                window.location.href = "./home.html"
+                window.location.href = "/TicketManagament2.0/HTML/home.html"
                 
             })
 
@@ -169,7 +169,7 @@ async function createIssue(event) {
                         var newId = createSusseful.idChamado
 
                         createSusseful.idChamado != null && alert(`Chamado numero "${newId}" criado com Sucesso`)
-                        window.location.href = "./home.html"
+                        window.location.href = "/TicketManagament2.0/HTML/home.html"
 
                     })
 
