@@ -71,7 +71,7 @@ async function sendToCadastro() {
     var email_verify = document.querySelector('#verifyemail').value
     var password = document.querySelector('#senha').value
     var password_verify = document.querySelector('#pass').value
-
+    
     var stap = true
     while (stap == true){
         if (email == email_verify && password == password_verify) {
