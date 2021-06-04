@@ -1,7 +1,7 @@
 
 async function loadTecnicos() {
 
-    await fetch(`http://25.106.166.86:8080/TicketManagament2.0/rest/getTecnico/`, {
+    await fetch(`http://localhost:8080/TicketManagament2.0/rest/getTecnico/`, {
         method: 'post',
         headers: { 'Content-Type': ' application/x-www-form-urlencoded' },
     })
@@ -43,7 +43,7 @@ async function sendToLogin() {
     //     data.append(pa)
     // }
 
-    await fetch(`http://25.106.166.86:8080/TicketManagament2.0/rest/loginValidation/`, {
+    await fetch(`http://localhost:8080/TicketManagament2.0/rest/loginValidation/`, {
         method: 'post',
         headers: { 'Content-Type': ' application/x-www-form-urlencoded' },
         body: `username=${user}&password=${password}`
@@ -54,8 +54,8 @@ async function sendToLogin() {
                 // console.log(data)
 
                 localStorage.setItem('idTec',data.idtec)
-                data.existresp == true ? window.location.href = "./HTML/home.html"
-                    : window.location.href = "./HTML/fail.html"
+                data.existresp == true ? window.location.href = "/TicketManagament2.0/HTML/home.html"
+                    : window.location.href = "/TicketManagament2.0/HTML/fail.html"
             })
 
         })
@@ -83,7 +83,7 @@ async function sendToCadastro() {
         }
     }
 
-    await fetch(`http://25.106.166.86:8080/TicketManagament2.0/rest/createTecnico/`, {
+    await fetch(`http://localhost:8080/TicketManagament2.0/rest/createTecnico/`, {
         method: 'post',
         headers: { 'Content-Type': ' application/x-www-form-urlencoded' },
         body: `nome=${name}&sobrenome=${last_name}&email=${email}&senha=${password}&nascimento=sysdate`
@@ -94,7 +94,7 @@ async function sendToCadastro() {
                 console.log(data.idTecnico)
                 localStorage.removeItem('idTec')
                 localStorage.setItem('idTec',data.idTecnico)
-                window.location.href = "./home.html"
+                window.location.href = "/TicketManagament2.0/HTML/home.html"
                 
             })
 
@@ -148,7 +148,7 @@ async function createIssue(event) {
 
     if (informationsComplete == true) {
 
-        await fetch(`http://25.106.166.86:8080/TicketManagament2.0/rest/createChamado/`, {
+        await fetch(`http://localhost:8080/TicketManagament2.0/rest/createChamado/`, {
             method: 'post',
             headers: { 'Content-Type': ' application/x-www-form-urlencoded',
             'Content-Length':	16 },
@@ -169,7 +169,7 @@ async function createIssue(event) {
                         var newId = createSusseful.idChamado
 
                         createSusseful.idChamado != null && alert(`Chamado numero "${newId}" criado com Sucesso`)
-                        window.location.href = "./home.html"
+                        window.location.href = "/TicketManagament2.0/HTML/home.html"
 
                     })
 
@@ -184,7 +184,7 @@ async function createIssue(event) {
 async function loadIssues(){
     var idTec = localStorage.getItem('idTec')
     
-    await fetch(`http://25.106.166.86:8080/TicketManagament2.0/rest/getChamados/`, {
+    await fetch(`http://localhost:8080/TicketManagament2.0/rest/getChamados/`, {
         method: 'post',
         headers: { 'Content-Type': ' application/x-www-form-urlencoded' },
         body: `idResp=${idTec}`

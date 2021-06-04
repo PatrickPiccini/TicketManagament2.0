@@ -19,7 +19,7 @@ public class getTecnicoNomes {
 	public Response getTecnicoNomes() throws JSONException{
 		JSONObject json = new JSONObject();
 		
-		List<List> ltn = Database.selectTecnico();
+		List<List> ltn = Database.selectTecnicos();
 		
 		if (ltn != null) {
 			json.put("nomes", ltn);

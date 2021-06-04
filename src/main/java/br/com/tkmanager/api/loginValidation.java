@@ -5,6 +5,7 @@ import javax.ws.rs.core.*;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 
 import br.com.tkmanager.models.*;
 import br.com.tkmanager.dbmanip.*;
@@ -20,11 +21,20 @@ public class loginValidation {
 		JSONObject json = new JSONObject();
 		
 		try {
-			Tecnico tec = Database.validateTecnico(nome, senha);
+			Tecnico tec = Database.validateTecnico(nome);
+			boolean senhaCorreta = BCrypt.checkpw(senha, tec.getSenha());
+			
 			if (tec != null) {
-				json.put("existresp", true);
-				json.put("idtec", tec.getId());
-				json.put("processOK", true);
+				if (senhaCorreta) {
+					json.put("existresp", true);
+					json.put("idtec", tec.getId());
+					json.put("processOK", true);
+				}
+				else {
+					json.put("existresp", false);
+					json.put("idtec", "null");
+					json.put("processOK", true);
+				}
 			}
 			else {
 				json.put("existresp", false);
