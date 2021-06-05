@@ -20,7 +20,7 @@ public class Database {
 	
 	private static final EntityManagerFactory ENTITY_MANAGER_FACTORY = Persistence.createEntityManagerFactory("TicketManagament2.0");
 	
-	public static Tecnico validateTecnico (String nome) {
+	public static Tecnico validateTecnico (String usuario) {
 		EntityManager em = ENTITY_MANAGER_FACTORY.createEntityManager();
 		EntityTransaction tr = em.getTransaction();
 		Tecnico tec = new Tecnico();
@@ -29,7 +29,7 @@ public class Database {
 			tr.begin();
 			
 			try {
-				tec = em.createQuery("SELECT tec FROM TECNICO tec WHERE tec.nome = '"+nome+"'", Tecnico.class).getSingleResult();
+				tec = em.createQuery("SELECT tec FROM TECNICO tec WHERE tec.usuario = '"+usuario+"'", Tecnico.class).getSingleResult();
 			}
 			
 			catch(NoResultException nr) {
@@ -44,7 +44,7 @@ public class Database {
 		return tec;
 	}
 
-	public static Tecnico insertTecnico(String nome, String sobrenome, String senha,  String email, Date nascimento) {
+	public static Tecnico insertTecnico(String usuario, String nome, String sobrenome, String senha,  String email, Date nascimento) {
 		EntityManager em = ENTITY_MANAGER_FACTORY.createEntityManager();
 		EntityTransaction tr = em.getTransaction();
 		
@@ -54,6 +54,7 @@ public class Database {
 			tr = em.getTransaction();
 			tr.begin();
 			
+			tec.setUsuario(usuario);
 			tec.setNome(nome);
 			tec.setSobrenome(sobrenome);
 			tec.setSenha(senha);
