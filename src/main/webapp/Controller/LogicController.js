@@ -65,6 +65,7 @@ async function sendToLogin() {
 }
 
 async function sendToCadastro() {
+	var username = document.querySelector('#usuario').value
     var name = document.querySelector('#name').value
     var last_name = document.querySelector('#sobrenome').value
     var email = document.querySelector('#email').value
@@ -86,7 +87,7 @@ async function sendToCadastro() {
     await fetch(`http://localhost:8080/TicketManagament2.0/rest/createTecnico/`, {
         method: 'post',
         headers: { 'Content-Type': ' application/x-www-form-urlencoded' },
-        body: `nome=${name}&sobrenome=${last_name}&email=${email}&senha=${password}&nascimento=sysdate`
+        body: `usuario=${username}&nome=${name}&sobrenome=${last_name}&email=${email}&senha=${password}`
     })
 
         .then((response) => {
@@ -95,15 +96,12 @@ async function sendToCadastro() {
                 localStorage.removeItem('idTec')
                 localStorage.setItem('idTec',data.idTecnico)
                 window.location.href = "/TicketManagament2.0/HTML/home.html"
-                
-            })
-
         })
         .catch((erro) => {
             return console.log(erro);
         })
 
-}
+})
 
 async function createIssue(event) {
     event.preventDefault()
@@ -206,22 +204,4 @@ async function loadIssues(){
             return console.log(erro);
         })
 
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+}}
