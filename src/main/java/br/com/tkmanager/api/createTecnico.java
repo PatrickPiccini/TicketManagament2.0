@@ -20,19 +20,12 @@ public class createTecnico {
 	@POST
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response createTecnico(@FormParam("nome") String nome, @FormParam("sobrenome") String sobrenome, @FormParam("senha") String senha, @FormParam("email") String email) throws JSONException{
+	public Response createTecnico(@FormParam("usuario") String usuario, @FormParam("nome") String nome, @FormParam("sobrenome") String sobrenome, @FormParam("senha") String senha, @FormParam("email") String email) throws JSONException{
 		JSONObject json = new JSONObject();
 		Tecnico tec = new Tecnico();
 		Date data = new Date(System.currentTimeMillis());
 		
-		
-		boolean existeTecnico = Database.haveTecnico(nome, sobrenome);
-		if (!existeTecnico) {
-			tec = Database.insertTecnico(nome, sobrenome, Bcrypt.hashPass(senha), email, data);
-		}
-		else {
-			tec = null;
-		}
+		tec = Database.insertTecnico(usuario, nome, sobrenome, Bcrypt.hashPass(senha), email, data);
 		
 		if (tec != null) {
 		json.put("idTecnico", tec.getId());
@@ -40,8 +33,7 @@ public class createTecnico {
 		else {
 		json.put("idTecnico", "null");
 		}
-	
-		
+			
 		return Response.status(200).entity(json.toString(2)).build();
 		
 	}

@@ -8,13 +8,11 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.NoResultException;
-import javax.persistence.NonUniqueResultException;
 import javax.persistence.Persistence;
-import javax.ws.rs.FormParam;
+import javax.persistence.PersistenceException;
 
 import br.com.tkmanager.models.Chamado;
 import br.com.tkmanager.models.Tecnico;
-import br.com.tkmanager.util.Bcrypt;
 
 public class Database {
 	
@@ -63,6 +61,13 @@ public class Database {
 			
 			em.persist(tec);
 			tr.commit();
+		}
+		
+		catch (PersistenceException pe) {
+			if (tr != null) {
+				tr.rollback();
+			}
+			return null;
 		}
 		
 		catch (Exception e) {
@@ -183,73 +188,6 @@ public class Database {
 		}
 		
 		return ln;
-	}
-	
-	
-	public static boolean haveTecnico(String nome, String sobrenome) {
-		EntityManager em = ENTITY_MANAGER_FACTORY.createEntityManager();
-		EntityTransaction tr = em.getTransaction();
-		boolean exist = false;
-		
-		tr.begin();
-		
-		try {
-			try {
-				exist =  true;
-				Tecnico tec = em.createQuery("SELECT tec FROM TECNICO tec WHERE tec.nome = '"+nome+"' AND tec.sobrenome = '"+sobrenome+"'", Tecnico.class).getSingleResult();
-			}
-			
-			catch(NoResultException nr) {
-				exist =  false;
-			}
-			
-			catch(NonUniqueResultException nun) {
-				exist =  true;
-			}
-			
-		}
-		catch(Exception e) {
-			e.printStackTrace();
-			exist = true;
-		}
-		
-		finally {
-			em.close();
-		}
-		
-		return exist;
-	}
-	
-	
-	public static void mudarSenhas() {
-		EntityManager em = ENTITY_MANAGER_FACTORY.createEntityManager();
-		EntityTransaction tr = em.getTransaction();
-		
-		tr.begin();
-		
-		try {
-			List<Tecnico> listec = em.createQuery("SELECT tec FROM TECNICO tec WHERE tec.senha != null", Tecnico.class).getResultList();
-			
-			for (Tecnico tec : listec) {
-				tec.setSenha(Bcrypt.hashPass(tec.getSenha()));
-				em.persist(tec);
-			}
-			
-			
-			tr.commit();
-			
-		}
-		
-		catch (Exception e ) {
-			if (tr != null) {
-				tr.rollback();
-			}
-			e.printStackTrace();
-		}
-		
-		finally {
-			em.close();
-		}
 	}
 }
 
