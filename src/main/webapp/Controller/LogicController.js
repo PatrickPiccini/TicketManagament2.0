@@ -34,9 +34,9 @@ async function sendToLogin() {
     var password = document.querySelector('#pass').value
 
 
-    const formData = new FormData();
-    formData.append('username', user);
-    formData.append('password', password);
+    // const formData = new FormData();
+    // formData.append('username', user);
+    // formData.append('password', password);
 
     // const data = new URLSearchParams();
     // for (const pair of new formData(formElement)) {
@@ -93,9 +93,16 @@ async function sendToCadastro() {
         .then((response) => {
             response.json().then((data) => {
                 console.log(data.idTecnico)
-                localStorage.removeItem('idTec')
-                localStorage.setItem('idTec',data.idTecnico)
-                window.location.href = "/TicketManagament2.0/HTML/home.html"
+
+                if(data.idTecnico == null){
+                    alert('Este usuario ja existe Usuário! Crie um novo Usuário ')
+                   (username, neme, last_name, email_verify, email, password, password_verify).value=''
+                } else {
+                    localStorage.removeItem('idTec')
+                    localStorage.setItem('idTec',data.idTecnico)
+                    window.location.href = "/TicketManagament2.0/HTML/home.html"
+                }
+                
         })
         .catch((erro) => {
             return console.log(erro);
