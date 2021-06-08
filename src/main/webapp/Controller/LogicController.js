@@ -92,7 +92,7 @@ async function sendToCadastro() {
 
         .then((response) => {
             response.json().then((data) => {
-                console.log(data.idTecnico)
+                console.log(typeof(data.idTecnico))
 
                 if(data.idTecnico == null){
                     alert('Este usuario ja existe Usuário! Crie um novo Usuário ')
