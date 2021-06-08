@@ -8,12 +8,12 @@ async function loadTecnicos() {
 
         .then((response) => {
             response.json().then((data) => {
-                console.log(data.nomes)
+                // console.log(data.nomes)
 
                 // for (var i = 0; i <= data.nomes.length(); i ++) {
                 //     console.log(i);
                 // }
-                
+
                 data.nomes.forEach((item) => {
                     $('#reporter').append('<option>' + item + '</option>');
                 })
@@ -26,22 +26,11 @@ async function loadTecnicos() {
         .catch((erro) => {
             return console.log(erro);
         })
-
 }
 
 async function sendToLogin() {
     var user = document.querySelector('#name').value
     var password = document.querySelector('#pass').value
-
-
-    // const formData = new FormData();
-    // formData.append('username', user);
-    // formData.append('password', password);
-
-    // const data = new URLSearchParams();
-    // for (const pair of new formData(formElement)) {
-    //     data.append(pa)
-    // }
 
     await fetch(`http://localhost:8080/TicketManagament2.0/rest/loginValidation/`, {
         method: 'post',
@@ -53,11 +42,10 @@ async function sendToLogin() {
             response.json().then((data) => {
                 // console.log(data)
 
-                localStorage.setItem('idTec',data.idtec)
+                localStorage.setItem('idTec', data.idtec)
                 data.existresp == true ? window.location.href = "/TicketManagament2.0/HTML/home.html"
                     : window.location.href = "/TicketManagament2.0/HTML/fail.html"
             })
-
         })
         .catch((erro) => {
             return console.log(erro);
@@ -65,16 +53,16 @@ async function sendToLogin() {
 }
 
 async function sendToCadastro() {
-	var username = document.querySelector('#usuario').value
+    var username = document.querySelector('#usuario').value
     var name = document.querySelector('#name').value
     var last_name = document.querySelector('#sobrenome').value
     var email = document.querySelector('#email').value
     var email_verify = document.querySelector('#verifyemail').value
     var password = document.querySelector('#senha').value
     var password_verify = document.querySelector('#pass').value
-    
+
     var stap = true
-    while (stap == true){
+    while (stap == true) {
         if (email == email_verify && password == password_verify) {
             stap = false
         } else {
@@ -93,21 +81,20 @@ async function sendToCadastro() {
         .then((response) => {
             response.json().then((data) => {
                 // console.log(data.idTecnico)
-                if(data.idTecnico == 'null'){
+                if (data.idTecnico == 'null') {
                     alert('Este usuário ja existe, Usuário! Crie um novo Usuário...')
-                   (username, neme, last_name, email_verify, email, password, password_verify).value=''
+                        (username, neme, last_name, email_verify, email, password, password_verify).value = ''
                 } else {
                     localStorage.removeItem('idTec')
-                    localStorage.setItem('idTec',data.idTecnico)
+                    localStorage.setItem('idTec', data.idTecnico)
                     window.location.href = "/TicketManagament2.0/HTML/home.html"
                 }
-                
+            })
+                .catch((erro) => {
+                    return console.log(erro);
+                })
         })
-        .catch((erro) => {
-            return console.log(erro);
-        })
-
-})
+}
 
 async function createIssue(event) {
     event.preventDefault()
@@ -120,42 +107,24 @@ async function createIssue(event) {
     var impact = document.querySelector('#impact').value;
     var date = document.querySelector('#dateBox').value;
     var informationsComplete = false
-
     var idresp = responsible.split(',')
-    // console.log(typeof(idresp[0]));
-
     var idrel = reporter.split(',')
-    // console.log(typeof(idrel[0]));
 
-    // console.log(Number(idresp[0]));
-    // console.log(Number(idrel[0]));
-    // console.log(title);
-    // console.log(description);
-    // console.log(status);
-    // console.log(priority);
-    // console.log(impact);
-    // console.log(date);
-
-
-
-
-    if(responsible == null || description == 'N/A' || status == 'N/A' || reporter == 'N/A' || priority == 'N/A' || impact == 'N/A' || date == '' ){
+    if (responsible == null || description == 'N/A' || status == 'N/A' || reporter == 'N/A' || priority == 'N/A' || impact == 'N/A' || date == '') {
         alert("Ncessario preencimento de todos os campos")
         informationsComplete = false
     } else {
         informationsComplete = true
     }
 
-
-    // console.log(typeof(title),typeof(responsible),typeof(description),typeof(status),typeof(reporter),typeof(priority),typeof(impact),typeof(Date(date)));
-    // console.log(String(date));
-
     if (informationsComplete == true) {
 
         await fetch(`http://localhost:8080/TicketManagament2.0/rest/createChamado/`, {
             method: 'post',
-            headers: { 'Content-Type': ' application/x-www-form-urlencoded',
-            'Content-Length':	16 },
+            headers: {
+                'Content-Type': ' application/x-www-form-urlencoded',
+                'Content-Length': 16
+            },
             body: `responsavel=${idresp[0]}
             &relator=${idrel[0]}
             &titulo=${title}
@@ -164,30 +133,31 @@ async function createIssue(event) {
             &prioridade=${priority}
             &impacto=${impact}
             &dtinicio=${date}`
+        })
+
+            .then((response) => {
+                response.json().then((createSusseful) => {
+                    var newId = createSusseful.idChamado
+
+                    createSusseful.idChamado != null && alert(`Chamado numero "${newId}" criado com Sucesso`)
+                    window.location.href = "/TicketManagament2.0/HTML/home.html"
+                })
             })
-            
-
-
-                .then((response) => {
-                    response.json().then((createSusseful) => {
-                        var newId = createSusseful.idChamado
-
-                        createSusseful.idChamado != null && alert(`Chamado numero "${newId}" criado com Sucesso`)
-                        window.location.href = "/TicketManagament2.0/HTML/home.html"
-
-                    })
-
-                })
-                .catch((erro) => {
-                    return console.log(erro);
-                })
-        }
-    
+            .catch((erro) => {
+                return console.log(erro);
+            })
+    }
 }
 
-async function loadIssues(){
+async function loadIssues() {
     var idTec = localStorage.getItem('idTec')
-    
+
+    // console.log(data.chamados[1].relator)
+    // console.log(data.chamados[1].idChamado)
+    // console.log(data.chamados[1].prioridade)
+    // console.log(data.chamados[1].dtinclusao)
+    // console.log(data.chamados[1].titulo)
+
     await fetch(`http://localhost:8080/TicketManagament2.0/rest/getChamados/`, {
         method: 'post',
         headers: { 'Content-Type': ' application/x-www-form-urlencoded' },
@@ -197,17 +167,88 @@ async function loadIssues(){
         .then((response) => {
             response.json().then((data) => {
                 console.log(data);
-                // console.log(data.chamados[1].relator)
-                // console.log(data.chamados[1].idChamado)
-                // console.log(data.chamados[1].prioridade)
-                // console.log(data.chamados[1].dtinclusao)
-                // console.log(data.chamados[1].titulo)
-                 
-            })
 
+                for (var i = 0; i < data.chamados.length; i++) {
+
+                    var main = document.querySelector('.infosMain')
+
+                    // var centralinfos = document.createElement('form')
+                    // centralinfos.className = "centralinfos"
+
+                    var chamado = document.createElement('div')
+                    chamado.className = "chamado"
+
+                    var titleID = document.createElement('h3')
+                    titleID.className = "titleID"
+
+                    var titleIssue = document.createElement('h3')
+                    titleIssue.className = "titleIssue"
+
+                    var div2 = document.createElement('div')
+                    div2.className = "div2"
+
+                    var divleft = document.createElement('div')
+                    divleft.className = "divleft"
+
+                    var titleDesc = document.createElement('label')
+                    titleDesc.className = "titleDesc"
+
+                    var selectBox = document.createElement('p')
+                    selectBox.className = "selectBox"
+
+                    var divright = document.createElement('div')
+                    divright.className = "divright"
+
+                    var div1 = document.createElement('div')
+                    div1.className = "div1"
+
+                    var divright = document.createElement('div')
+                    divright.className = "divright"
+
+                    var lateralRight = document.createElement('label')
+                    lateralRight.className = "lateralRight"
+
+                    //------------criação dos filhos
+
+                    -----divright
+                    divright.appendChild(selectBox.innerHTML = data.chamados[i].dtinclusao, lateralRight.innerHTML = 'Data de Inicio')
+                    divright.appendChild(selectBox.innerHTML = data.chamados[i].impacto, lateralRight.innerHTML = 'Impacto')
+                    divright.appendChild(selectBox.innerHTML = data.chamados[i].prioridade, lateralRight.innerHTML = 'prioridade')
+                    divright.appendChild(selectBox.innerHTML = data.chamados[i].relator, lateralRight.innerHTML = 'Relator')
+
+                    //------divleft
+                    divleft.appendChild(selectBox.innerHTML = data.chamados[i].descricao, titleDesc.innerHTML = 'Descrição')
+
+                    //-----div1
+                    div1.appendChild(divright, divleft)
+
+                    //------divright
+                    divright.appendChild(selectBox.innerHTML = data.chamados[i].status, titleDesc.innerHTML = 'Status')
+
+                    //------divleft
+                    divleft.appendChild(selectBox.innerHTML = data.chamados[i].responsavel, titleDesc.innerHTML = 'Responsável')
+
+                    //------div2
+                    div2.appendChild(divright, divleft)
+
+                    //------titleIssue
+                    titleIssue.innerHTML = data.chamados[i].titulo
+
+                    //------titleID
+                    titleID.innerHTML = data.chamados[i].idchamado
+
+                    //------chamado
+                    chamado.appendChild(div2, titleIssue, titleID)
+
+                    //------centralinfos
+                    centralinfos.appendChild(chamado)
+
+                    //------infosMain
+                    main.appendChild(centralinfos)
+                }
+            })
         })
         .catch((erro) => {
             return console.log(erro);
         })
-
-}}
+}
