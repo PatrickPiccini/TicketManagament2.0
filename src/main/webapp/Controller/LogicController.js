@@ -8,12 +8,6 @@ async function loadTecnicos() {
 
         .then((response) => {
             response.json().then((data) => {
-                // console.log(data.nomes)
-
-                // for (var i = 0; i <= data.nomes.length(); i ++) {
-                //     console.log(i);
-                // }
-
                 data.nomes.forEach((item) => {
                     $('#reporter').append('<option>' + item + '</option>');
                 })
@@ -37,7 +31,6 @@ async function sendToLogin() {
         headers: { 'Content-Type': ' application/x-www-form-urlencoded' },
         body: `username=${user}&password=${password}`
     })
-
         .then((response) => {
             response.json().then((data) => {
                 // console.log(data)
@@ -151,29 +144,20 @@ async function createIssue(event) {
 
 async function loadIssues() {
     var idTec = localStorage.getItem('idTec')
-
-    // console.log(data.chamados[1].relator)
-    // console.log(data.chamados[1].idChamado)
-    // console.log(data.chamados[1].prioridade)
-    // console.log(data.chamados[1].dtinclusao)
-    // console.log(data.chamados[1].titulo)
-
     await fetch(`http://localhost:8080/TicketManagament2.0/rest/getChamados/`, {
         method: 'post',
         headers: { 'Content-Type': ' application/x-www-form-urlencoded' },
         body: `idResp=${idTec}`
     })
-
         .then((response) => {
             response.json().then((data) => {
                 console.log(data);
 
                 for (var i = 0; i < data.chamados.length; i++) {
 
-                    var main = document.querySelector('.infosMain')
-
-                    // var centralinfos = document.createElement('form')
-                    // centralinfos.className = "centralinfos"
+                    //----Criação de Elemenotos para criação de form de cada chamado
+                    var centralinfos = document.createElement('form')
+                    centralinfos.className = "centralinfos"
 
                     var chamado = document.createElement('div')
                     chamado.className = "chamado"
@@ -187,64 +171,155 @@ async function loadIssues() {
                     var div2 = document.createElement('div')
                     div2.className = "div2"
 
-                    var divleft = document.createElement('div')
-                    divleft.className = "divleft"
-
-                    var titleDesc = document.createElement('label')
-                    titleDesc.className = "titleDesc"
-
-                    var selectBox = document.createElement('p')
-                    selectBox.className = "selectBox"
-
-                    var divright = document.createElement('div')
-                    divright.className = "divright"
-
                     var div1 = document.createElement('div')
                     div1.className = "div1"
 
+                    //----Left
+                    var divleft = document.createElement('div')
+                    divleft.className = "divleft"
+                    var divleft2 = document.createElement('div')
+                    divleft2.className = "divleft"
+
+                    //----Titles
+                    var titleDesc = document.createElement('label')
+                    titleDesc.className = "titleDesc"
+                    var titleDesc2 = document.createElement('label')
+                    titleDesc2.className = "titleDesc"
+                    var titleDesc3 = document.createElement('label')
+                    titleDesc3.className = "titleDesc"
+
+                    //----Selects
+                    var selectBox = document.createElement('p')
+                    selectBox.className = "selectBox"
+                    var selectBox2 = document.createElement('p')
+                    selectBox2.className = "selectBox"
+                    var selectBox3 = document.createElement('p')
+                    selectBox3.className = "selectBoxDesc"
+                    var selectBox4 = document.createElement('p')
+                    selectBox4.className = "selectBox"
+                    var selectBox5 = document.createElement('p')
+                    selectBox5.className = "selectBox"
+                    var selectBox6 = document.createElement('p')
+                    selectBox6.className = "selectBox"
+                    var selectBox7 = document.createElement('p')
+                    selectBox7.className = "selectBox"
+
+                    //----Right
                     var divright = document.createElement('div')
                     divright.className = "divright"
+                    var divright2 = document.createElement('div')
+                    divright2.className = "divright"
 
-                    var lateralRight = document.createElement('label')
-                    lateralRight.className = "lateralRight"
+                    //----lateralRight
+                    var lateralRight4 = document.createElement('label')
+                    lateralRight4.className = "lateralRight"
+                    var lateralRight5 = document.createElement('label')
+                    lateralRight5.className = "lateralRight"
+                    var lateralRight6 = document.createElement('label')
+                    lateralRight6.className = "lateralRight"
+                    var lateralRight7 = document.createElement('label')
+                    lateralRight7.className = "lateralRight"
 
-                    //------------criação dos filhos
+                    var main = document.querySelector('.infosMain')
 
-                    -----divright
-                    divright.appendChild(selectBox.innerHTML = data.chamados[i].dtinclusao, lateralRight.innerHTML = 'Data de Inicio')
-                    divright.appendChild(selectBox.innerHTML = data.chamados[i].impacto, lateralRight.innerHTML = 'Impacto')
-                    divright.appendChild(selectBox.innerHTML = data.chamados[i].prioridade, lateralRight.innerHTML = 'prioridade')
-                    divright.appendChild(selectBox.innerHTML = data.chamados[i].relator, lateralRight.innerHTML = 'Relator')
+                    //-----Conversão das informações adquiridas do Banco de dados
+                    var status;
+                    var prioridade;
+                    var impacto;
+                    var dtinclusao;
 
-                    //------divleft
-                    divleft.appendChild(selectBox.innerHTML = data.chamados[i].descricao, titleDesc.innerHTML = 'Descrição')
+                    if (data.chamados[i].status == "A") {
+                        status = "Aguardando Terceiros"
+                    } else if (data.chamados[i].status == "F") {
+                        status = "Concluído"
+                    } else if (data.chamados[i].status == "P") {
+                        status = "Em Progresso"
+                    } else if (data.chamados[i].status == "C") {
+                        status = "Cancelado"
+                    }
 
-                    //-----div1
-                    div1.appendChild(divright, divleft)
 
-                    //------divright
-                    divright.appendChild(selectBox.innerHTML = data.chamados[i].status, titleDesc.innerHTML = 'Status')
+                    if (data.chamados[i].prioridade == "1") {
+                        prioridade = "Prioridade 1"
+                    } else if (data.chamados[i].prioridade == "2") {
+                        prioridade = "Prioridade 2"
+                    } else if (data.chamados[i].prioridade == "3") {
+                        prioridade = "Prioridade 3"
+                    } else if (data.chamados[i].prioridade == "4") {
+                        prioridade = "Prioridade 4"
+                    }
 
-                    //------divleft
-                    divleft.appendChild(selectBox.innerHTML = data.chamados[i].responsavel, titleDesc.innerHTML = 'Responsável')
 
-                    //------div2
-                    div2.appendChild(divright, divleft)
+                    if (data.chamados[i].impacto == "C") {
+                        impacto = "Crítico"
+                    } else if (data.chamados[i].impacto == "A") {
+                        impacto = "Alto"
+                    } else if (data.chamados[i].impacto == "M") {
+                        impacto = "Médio"
+                    } else if (data.chamados[i].impacto == "B") {
+                        impacto = "Baixo"
+                    }
 
-                    //------titleIssue
-                    titleIssue.innerHTML = data.chamados[i].titulo
+                    //----Conversão de Tada para Brasileira
+                    var hourDate = data.chamados[i].dtinclusao
+                    var newhora = '';
+                    for (var j = 0; j <= 9; j++) {
+                        newhora += hourDate[j]
+                    }
+                    var dtinclusao = newhora.split('-').reverse().join('/')                    
 
-                    //------titleID
-                    titleID.innerHTML = data.chamados[i].idchamado
 
-                    //------chamado
-                    chamado.appendChild(div2, titleIssue, titleID)
-
-                    //------centralinfos
-                    centralinfos.appendChild(chamado)
-
-                    //------infosMain
+                    //-----Adição dos elementos ao Fron-End
                     main.appendChild(centralinfos)
+                    centralinfos.appendChild(chamado)
+                    chamado.appendChild(titleID)
+                    titleID.appendChild(document.createTextNode(data.chamados[i].idchamado))
+                    chamado.appendChild(titleIssue)
+                    titleIssue.appendChild(document.createTextNode(data.chamados[i].titulo))
+
+                    //--div2
+                    chamado.appendChild(div2)
+                    div2.appendChild(divleft)
+                    divleft.appendChild(titleDesc)
+                    titleDesc.appendChild(document.createTextNode('Responsável'))
+                    divleft.appendChild(selectBox)
+                    selectBox.appendChild(document.createTextNode(data.chamados[i].responsavel))
+
+                    div2.appendChild(divright)
+                    divright.appendChild(titleDesc)
+                    titleDesc2.appendChild(document.createTextNode('Status'))
+                    divright.appendChild(selectBox2)
+                    selectBox2.appendChild(document.createTextNode(status))
+
+                    //--div1
+                    chamado.appendChild(div1)
+                    div1.appendChild(divleft2)
+                    divleft2.appendChild(titleDesc3)
+                    titleDesc3.appendChild(document.createTextNode('Descrição'))
+                    divleft2.appendChild(selectBox3)
+                    selectBox3.appendChild(document.createTextNode(data.chamados[i].descricao))
+
+                    div1.appendChild(divright2)
+                    divright2.appendChild(lateralRight4)
+                    lateralRight4.appendChild(document.createTextNode('Relator'))
+                    divright2.appendChild(selectBox4)
+                    selectBox4.appendChild(document.createTextNode(data.chamados[i].relator))
+
+                    divright2.appendChild(lateralRight5)
+                    lateralRight5.appendChild(document.createTextNode('Prioridade'))
+                    divright2.appendChild(selectBox5)
+                    selectBox5.appendChild(document.createTextNode(prioridade))
+
+                    divright2.appendChild(lateralRight6)
+                    lateralRight6.appendChild(document.createTextNode('Impacto'))
+                    divright2.appendChild(selectBox6)
+                    selectBox6.appendChild(document.createTextNode(impacto))
+
+                    divright2.appendChild(lateralRight7)
+                    lateralRight7.appendChild(document.createTextNode('Data de Inicio'))
+                    divright2.appendChild(selectBox7)
+                    selectBox7.appendChild(document.createTextNode(dtinclusao))
+
                 }
             })
         })
@@ -252,3 +327,5 @@ async function loadIssues() {
             return console.log(erro);
         })
 }
+
+window.addEventListener('load', loadIssues)

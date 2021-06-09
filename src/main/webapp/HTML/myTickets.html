@@ -15,7 +15,7 @@
     <title>Meus Chamados</title>
 </head>
 
-<body onload="loadIssues()">
+<body>
 <!-- <body> -->
     <input type="checkbox" class='checkMenu' id="menu">
     <label for="menu" class='icone'>
@@ -43,46 +43,10 @@
             <h2 id='wlc'>Bem Vindo!</h2>
         </div>
     </header>
-    <main class='infosMain'>
-        <form class='centralinfos'>
-            <div class='chamado'>
-                <h3 class="titleID">ID chamado</h3>
-                <h3 class="titleIssue" >Titulo Editavel do Chamado</h3>
-                <div class='div2'>
-                    <div class='divleft'>
-                        <label for="descInfo" class="titleDesc">Responsável</label><br>
-                        <p class='selectBox'>responsible</p>
-                    </div>
-                    <div class='divright'>
-                        <label for="descInfo" class="titleDesc">Status</label><br>
-                        <p class='selectBox'>status</p>
-                    </div>
-                </div>
-                <div class='div1'>
-                    <div class='divleft'>
-                        <label for="descInfo" class="titleDesc">Descrição</label><br>
-                       <p class='selectBox'>descrição</p>
-
-                    </div>
-                    <div class='divright'>
-                        <!-- Puxar usuarios do banco -->
-                        <label for="descInfo" class="lateralRight">Relator</label><br>
-                        <p class='selectBox'>relator</p>
-                        <!-- enviar para o banco a prioridade do chamado -->
-                        <label for="descInfo" class="lateralRight">Prioridade</label><br>
-                        <p class='selectBox'>prioridade</p>
-                        <!-- enviar para o banco o impacto do chamado -->
-                        <label for="descInfo" class="lateralRight">Impacto</label><br>
-                        <p class='selectBox'>impacto</p>
-                        <label for="descInfo" class="lateralRight">Data de Inicio</label><br>
-                        <p class='selectBox'>12/01/2021</p>
-                    </div>
-                </div>
-            </div>
-        </form>
-        <p></p>
+    <main class='infosMain' onload="loadIssues()" >
+        
     </main>
 
 </body>
-
+<script src='/TicketManagament2.0/Controller/LogicController.js'></script>
 </html>
