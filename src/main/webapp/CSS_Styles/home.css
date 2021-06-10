@@ -49,11 +49,24 @@ body{
     color: white;
     text-decoration: none;
     font: bold 14pt Arial;
-
-}
-.blocksLinks:hover{
+}.blocksLinks:hover{
     background-color: #1AB6D9;
 }
+
+.blocksLinksLogout{
+    /* border: none; */
+    background-color: #ffe4c400;
+    right: 40px;
+    padding: 29px 15px;
+    color: white;
+    text-decoration: none;
+    font: bold 14pt Arial;
+    display: inline-block;
+    float: right;
+    margin-right:20px ;
+    z-index: +2;
+}
+
 .icone{
     margin-top: 75px;
     padding: 30px;
@@ -94,7 +107,7 @@ body{
     width: 80px;
     display: inline-block;
     float: right;
-    margin-right:35px ;
+    margin-right:20px ;
 }
 
 .infoHeadrer h2{
