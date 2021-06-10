@@ -268,7 +268,6 @@ async function loadIssues() {
                     }
                     var dtinclusao = newhora.split('-').reverse().join('/')                    
 
-
                     //-----Adição dos elementos ao Fron-End
                     main.appendChild(centralinfos)
                     centralinfos.appendChild(chamado)
