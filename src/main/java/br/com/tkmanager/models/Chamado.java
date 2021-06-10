@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity(name="CHAMADO")
 public class Chamado implements Serializable{
@@ -19,11 +21,14 @@ public class Chamado implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer idchamado;
 	
-	@Column(name="responsavel")
-	private Integer responsavel;
 	
-	@Column(name="relator")
-	private Integer relator;
+	@ManyToOne
+	@JoinColumn(name="responsavel")
+	private Tecnico responsavel;
+	
+	@ManyToOne
+	@JoinColumn(name="relator")
+	private Tecnico relator;
 	
 	@Column(name="titulo")
 	private String titulo;
@@ -44,19 +49,19 @@ public class Chamado implements Serializable{
 	private Date dtinclusao;
 
 	
-	public Integer getResponsavel() {
+	public Tecnico getResponsavel() {
 		return responsavel;
 	}
 
-	public void setResponsavel(Integer responsavel) {
+	public void setResponsavel(Tecnico responsavel) {
 		this.responsavel = responsavel;
 	}
 
-	public Integer getRelator() {
+	public Tecnico getRelator() {
 		return relator;
 	}
 
-	public void setRelator(Integer relator) {
+	public void setRelator(Tecnico relator) {
 		this.relator = relator;
 	}
 

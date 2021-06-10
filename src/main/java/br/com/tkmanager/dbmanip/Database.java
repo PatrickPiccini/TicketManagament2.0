@@ -10,6 +10,7 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.NoResultException;
 import javax.persistence.Persistence;
 import javax.persistence.PersistenceException;
+import javax.persistence.Query;
 
 import br.com.tkmanager.models.Chamado;
 import br.com.tkmanager.models.Tecnico;
@@ -94,8 +95,8 @@ public class Database {
 		try {
 			tr.begin();
 			
-			cha.setResponsavel(resp);
-			cha.setRelator(rela);
+			cha.setResponsavel(em.find(Tecnico.class, resp));
+			cha.setRelator(em.find(Tecnico.class, rela));
 			cha.setTitulo(titu);
 			cha.setStatus(stat);
 			cha.setDescricao(desc);
@@ -134,11 +135,23 @@ public class Database {
 			
 			try {
 				if (idResp > 0) { 
-					chamados = em.createQuery("SELECT cha FROM CHAMADO cha WHERE cha.responsavel = "+ idResp, Chamado.class).getResultList();
+					String sql = "SELECT c.idchamado, CONCAT(t.nome ,CONCAT(' ' ,t.sobrenome)), CONCAT(tr.nome, CONCAT(' ' ,tr.sobrenome)), c.titulo, c.status, c.descricao, c.prioridade, c.impacto, c.dtinclusao "
+							+ "FROM CHAMADO c "
+							+ "JOIN c.responsavel t " 
+							+ "JOIN c.relator tr "
+							+ "WHERE c.responsavel = "+ idResp;
+					
+					 Query qr = em.createQuery(sql);
+					 chamados = qr.getResultList();
 				}
 				else {
-					chamados = em.createQuery("SELECT cha FROM CHAMADO cha", Chamado.class).getResultList();
-
+					
+					String sql = "SELECT c.idchamado, CONCAT(t.nome ,CONCAT(' ' ,t.sobrenome)), CONCAT(tr.nome, CONCAT(' ' ,tr.sobrenome)), c.titulo, c.status, c.descricao, c.prioridade, c.impacto, c.dtinclusao "
+							+ "FROM CHAMADO c "
+							+ "JOIN c.responsavel t " 
+							+ "JOIN c.relator tr ";
+					 Query qr = em.createQuery(sql);
+					 chamados = qr.getResultList();
 				}
 			}
 			catch(NoResultException nr) {
