@@ -1,4 +1,4 @@
-### Ticket Managament 2.0
+### Ticket Management 2.0
 <p>Esse projeto tem como objetivo costituir um sistema de gerenciamento de tickets.</p><br>
 <p>O projeto começa com uma tela onde o usuario poderá fazer login, onde seus dados serão buscados em um banco de dados. Se caso esse ususario não estiver cadastrado, o usuario será levado a outra tela que irá pedir se deseja tentar novamente ou cadastrar-se ao sistema. Na tela de cadastro, todas as informações que o usuario colocar nos campos nescessários, serão inseridas no Banco de dados. </p> <br>
 <p>Após logar no sistema, o usuário será levado até a pagina home do TicketManagament</p>
